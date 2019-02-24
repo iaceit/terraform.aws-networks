@@ -21,10 +21,20 @@ resource "aws_subnet" "main_public_subnet" {
   tags = "${merge(map("Name" , "main_public_subnet"),var.tags)}"
 }
 
-resource "aws_subnet" "main_private_subnet" {
+resource "aws_subnet" "main_private_subnet-a" {
   vpc_id                  = "${aws_vpc.main_vpc.id}"
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
+  availability_zone       = "${var.region}a"
 
-  tags = "${merge(map("Name" , "main_private_subnet"),var.tags)}"
+  tags = "${merge(map("Name" , "main_private_subnet-a"),var.tags)}"
+}
+
+resource "aws_subnet" "main_private_subnet-b" {
+  vpc_id                  = "${aws_vpc.main_vpc.id}"
+  cidr_block              = "10.0.3.0/24"
+  map_public_ip_on_launch = true
+  availability_zone       = "${var.region}b"
+
+  tags = "${merge(map("Name" , "main_private_subnet-b"),var.tags)}" 
 }

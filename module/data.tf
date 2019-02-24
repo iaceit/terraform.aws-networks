@@ -22,10 +22,22 @@ data "aws_subnet" "main_public_subnet" {
     }
 }
 
-data "aws_subnet" "main_private_subnet" {
+data "aws_subnet" "main_private_subnet-a" {
     filter {
         name = "tag:Name"
-        values = ["main_private_subnet"]
+        values = ["main_private_subnet-a"]
+    }
+
+    filter {
+        name = "tag:repo"
+        values = ["${var.repo}"]
+    }
+}
+
+data "aws_subnet" "main_private_subnet-b" {
+    filter {
+        name = "tag:Name"
+        values = ["main_private_subnet-b"]
     }
 
     filter {

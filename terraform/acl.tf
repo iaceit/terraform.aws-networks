@@ -1,7 +1,11 @@
 
 resource "aws_network_acl" "main_network_acl" {
   vpc_id     = "${aws_vpc.main_vpc.id}"
-  subnet_ids = ["${aws_subnet.main_public_subnet.id}", "${aws_subnet.main_private_subnet.id}"]
+  subnet_ids = [
+    "${aws_subnet.main_public_subnet.id}", 
+    "${aws_subnet.main_private_subnet-a.id}", 
+    "${aws_subnet.main_private_subnet-b.id}"
+    ]
 
   ingress {
     protocol   = "tcp"

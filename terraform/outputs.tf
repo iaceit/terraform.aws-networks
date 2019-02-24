@@ -6,8 +6,12 @@ output "main_public_subnet_id" {
   value = "${aws_subnet.main_public_subnet.id}"
 }
 
-output "main_private_subnet_id" {
-  value = "${aws_subnet.main_public_subnet.id}"
+output "main_private_subnet-a_id" {
+  value = "${aws_subnet.main_private_subnet-a.id}"
+}
+
+output "main_private_subnet-b_id" {
+  value = "${aws_subnet.main_private_subnet-b.id}"
 }
 
 output "cloudflare_sg_id" {
