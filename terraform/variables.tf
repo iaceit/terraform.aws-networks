@@ -5,7 +5,6 @@ variable "aws_secret_key" {
 }
 
 variable "region" {
-  default = "ap-southeast-2"
 }
 
 variable "account_id" {}
@@ -19,6 +18,7 @@ variable "tags" {
     "service"    = "haomingyin.com"
     "created-by" = "terraform"
     "owner"      = "haoming.yin"
+    "repo"       = "terraform.aws-networks"
   }
 }
 
