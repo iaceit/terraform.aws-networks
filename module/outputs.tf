@@ -10,6 +10,14 @@ output "main_private_subnet_id" {
     value = "${data.aws_subnet.main_private_subnet.id}"
 }
 
-output "main_ssh_sg_id" {
+output "cloudflare_sg_id" {
+    value = "${data.aws_security_group.cloudflare_sg.id}"
+}
+
+output "internal_sg_id" {
+    value = "${data.aws_security_group.internal_sg.id}"
+}
+
+output "ssh_sg_id" {
     value = "${data.aws_security_group.ssh_sg.id}"
 }
