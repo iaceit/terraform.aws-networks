@@ -1,11 +1,5 @@
-variable "aws_access_key" {}
-
-variable "aws_secret_key" {}
-
 variable "region" {}
 
-variable "account_id" {}
-
-variable "iam_role" {}
-
-variable "repo" {}
+variable "repo" {
+    default = "terraform.aws-networks"
+}

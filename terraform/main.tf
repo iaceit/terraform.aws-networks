@@ -4,6 +4,6 @@ terraform {
     backend "s3" {
         region = "ap-southeast-2"
         bucket = "973039937378-infra"
-        key = "haomingyin.com/terraform/aws-networks/973039937378/ap-southeast-2/terraform.tfstate"
+        key = "haomingyin.com/terraform/aws-networks/ap-southeast-2/terraform.tfstate"
     }
 }
