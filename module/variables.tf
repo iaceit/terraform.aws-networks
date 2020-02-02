@@ -1,5 +1,7 @@
-variable "region" {}
+variable "region" {
+}
 
 variable "repo" {
-    default = "terraform.aws-networks"
+  default = "terraform.aws-networks"
 }
+
