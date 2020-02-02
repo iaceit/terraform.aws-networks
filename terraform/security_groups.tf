@@ -2,13 +2,13 @@
 resource "aws_security_group" "internal_sg" {
   name        = "internal_sg"
   description = "Allow traffic from web subnets within the same VPC"
-  vpc_id      = "${aws_vpc.main_vpc.id}"
+  vpc_id      = aws_vpc.main_vpc.id
 
   ingress {
     from_port       = 0
     to_port         = 0
     protocol        = "-1"
-    security_groups = ["${aws_security_group.cloudflare_sg.id}"]
+    security_groups = [aws_security_group.cloudflare_sg.id]
   }
 
   egress {
@@ -18,26 +18,31 @@ resource "aws_security_group" "internal_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${merge(map("Name" , "internal_sg"),var.tags)}"
+  tags = merge(
+    {
+      "Name" = "internal_sg"
+    },
+    var.tags,
+  )
 }
 
 resource "aws_security_group" "cloudflare_sg" {
   name        = "cloudflare_sg"
   description = "Allow HTTP, HTTPS inbound traffic from whitelisted Cloudflare IPs"
-  vpc_id      = "${aws_vpc.main_vpc.id}"
+  vpc_id      = aws_vpc.main_vpc.id
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = "${var.cloudflare_ips}"
+    cidr_blocks = var.cloudflare_ips
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = "${var.cloudflare_ips}"
+    cidr_blocks = var.cloudflare_ips
   }
 
   egress {
@@ -47,13 +52,18 @@ resource "aws_security_group" "cloudflare_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${merge(map("Name" , "cloudflare_sg"),var.tags)}"
+  tags = merge(
+    {
+      "Name" = "cloudflare_sg"
+    },
+    var.tags,
+  )
 }
 
 resource "aws_security_group" "ssh_sg" {
   name        = "ssh_sg"
   description = "Allow SSH inbound traffic"
-  vpc_id      = "${aws_vpc.main_vpc.id}"
+  vpc_id      = aws_vpc.main_vpc.id
 
   ingress {
     from_port   = 22
@@ -69,5 +79,11 @@ resource "aws_security_group" "ssh_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = "${merge(map("Name" , "ssh_sg"),var.tags)}"
+  tags = merge(
+    {
+      "Name" = "ssh_sg"
+    },
+    var.tags,
+  )
 }
+

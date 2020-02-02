@@ -1,7 +1,8 @@
-variable "region" {}
+variable "region" {
+}
 
 variable "tags" {
-  type = "map"
+  type = map(string)
 
   default = {
     "service"    = "haomingyin.com"
@@ -12,7 +13,7 @@ variable "tags" {
 }
 
 variable "cloudflare_ips" {
-  type = "list"
+  type = list(string)
 
   default = [
     "103.21.244.0/22",
@@ -31,3 +32,4 @@ variable "cloudflare_ips" {
     "198.41.128.0/17",
   ]
 }
+

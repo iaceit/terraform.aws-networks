@@ -1,11 +1,10 @@
-
 resource "aws_network_acl" "main_network_acl" {
-  vpc_id     = "${aws_vpc.main_vpc.id}"
+  vpc_id = aws_vpc.main_vpc.id
   subnet_ids = [
-    "${aws_subnet.main_public_subnet.id}", 
-    "${aws_subnet.main_private_subnet-a.id}", 
-    "${aws_subnet.main_private_subnet-b.id}"
-    ]
+    aws_subnet.main_public_subnet.id,
+    aws_subnet.main_private_subnet-a.id,
+    aws_subnet.main_private_subnet-b.id,
+  ]
 
   ingress {
     protocol   = "tcp"
@@ -47,7 +46,7 @@ resource "aws_network_acl" "main_network_acl" {
     protocol   = "-1"
     rule_no    = 500
     action     = "allow"
-    cidr_block = "${aws_vpc.main_vpc.cidr_block}"
+    cidr_block = aws_vpc.main_vpc.cidr_block
     from_port  = 0
     to_port    = 0
   }
@@ -61,5 +60,11 @@ resource "aws_network_acl" "main_network_acl" {
     to_port    = 0
   }
 
-  tags = "${merge(map("Name" , "main_network_acl"),var.tags)}"
+  tags = merge(
+    {
+      "Name" = "main_network_acl"
+    },
+    var.tags,
+  )
 }
+
