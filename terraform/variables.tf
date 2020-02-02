@@ -5,9 +5,9 @@ variable "tags" {
   type = map(string)
 
   default = {
-    "service"    = "haomingyin.com"
+    "service"    = "iaceit.com"
     "created-by" = "terraform"
-    "owner"      = "haoming.yin"
+    "owner"      = "iaceit.com"
     "repo"       = "terraform.aws-networks"
   }
 }
